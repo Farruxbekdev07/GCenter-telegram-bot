@@ -1,14 +1,5 @@
 const { Telegraf } = require("telegraf");
 const bot = new Telegraf("6499240704:AAEG34Dz71GBV2iBFTnklSShpNAh2RZ10pM");
-const { MongoClient } = require("mongodb");
-
-MongoClient.connect("mongodb://localhost:27017", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then((client) => {
-  const db = client.db();
-  bot.use(session(db, { collectionName: "sessions" }));
-});
 
 bot.start(async (ctx) => {
   const channelInfo = await ctx.telegram.getChat("@gcenter_channel");
@@ -22,7 +13,7 @@ bot.start(async (ctx) => {
 
   if (isSubscribed) {
     ctx.reply(
-      `Salom, ${ctx.message.chat.first_name}\n
+      `Salom, ${ctx.message.chat.first_name}\n 
 Botimizdan foydalanmoqchi bo'lsangiz avval telegram kanalimizga obuna bo'ling!`,
       {
         reply_markup: {
